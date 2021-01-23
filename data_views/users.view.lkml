@@ -84,8 +84,20 @@ view: users {
     sql: ${TABLE}."ZIP" ;;
   }
 
+  dimension: age_tiered {
+    type: tier
+    sql: ${age} ;;
+    tiers: [18,24,34,44,65]
+    style: integer
+  }
+
   measure: count {
     type: count
     drill_fields: [id, first_name, last_name, events.count, order_items.count]
   }
+
+  # measure: first_order_date {
+  #   type: string
+  #   sql: MAX(${order_items.created_time} );;
+  # }
 }

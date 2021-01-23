@@ -103,6 +103,26 @@ view: order_items {
     sql: ${TABLE}."USER_ID" ;;
   }
 
+#### custom dimentions
+
+
+  dimension: age_groups {
+    type: string
+    sql: CASE
+              WHEN ${users.age}  < 0 THEN 'Below 0'
+              WHEN ${users.age}  < 10 THEN '0 to 9'
+              WHEN ${users.age}  < 20 THEN '10 to 19'
+              WHEN ${users.age}  < 30 THEN '20 to 29'
+              WHEN ${users.age}  < 40 THEN '30 to 39'
+              WHEN ${users.age}  < 50 THEN '40 to 49'
+              WHEN ${users.age}  < 60 THEN '50 to 59'
+              WHEN ${users.age}  < 70 THEN '60 to 69'
+              WHEN ${users.age}  >= 70 THEN '70 or Above'
+              ELSE 'Undefined'
+            END ;;
+  }
+
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -177,6 +197,63 @@ view: order_items {
     sql: 1.0*${total_sale_price}/${users.count} ;;
     value_format_name: usd
   }
+
+  measure: first_order_date {
+    type: date
+    sql: MIN(${created_date}) ;;
+  }
+
+  measure: latest_order_date {
+    type: date
+    sql: MAX(${created_raw}) ;;
+  }
+
+  measure: latest_website_visit {
+    type: date
+    sql: MAX(${events.created_raw}) ;;
+  }
+
+  measure: spend_per_user {
+    view_label: "Order Items"
+    type: number
+    value_format_name: usd
+    sql: 1.0 * ${total_sale_price} / NULLIF(${users.count},0) ;;
+  }
+
+  measure: orders_per_user {
+    view_label: "Order Items"
+    type: number
+    value_format_name: decimal_2
+    sql: 1.0 * ${count} / NULLIF(${users.count},0) ;;
+  }
+
+  measure: count_of_orders {
+    type: count_distinct
+    sql: ${order_id} ;;
+  }
+
+
+
+#  dimension: average_orders_per_user_dim {
+ #   #hidden: yes
+  #  type: string
+   # sql: ${average_orders_per_user};;
+#  }
+
+
+ # measure: order_buckets {
+  #  type: number
+   # sql: CASE
+    #          WHEN ${average_orders_per_user} = 1  THEN '1 Order'
+     #         WHEN ${average_orders_per_user} = 2 THEN '2 Orders'
+      #        WHEN ${average_orders_per_user} <= 5 THEN '3-5 Orders'
+       #       WHEN ${average_orders_per_user} <= 9 THEN '6-9 Orders'
+        #      WHEN ${average_orders_per_user} > 10 THEN '10+ Orders'
+         #     ELSE 'Undefined'
+          #  END ;;
+  #}
+
+
 
   # measure: average_gross_margin_amount {
   #   type: number
