@@ -63,8 +63,9 @@ view: user_order_facts_ndt {
   dimension: revenue_tiered {
     type: tier
     sql: ${total_sale_price} ;;
-    tiers: [5,20,50,100,500,1000]
-    style: integer
+    tiers: [4.99,19.99,50,100,500,1000]
+    style: relational
+    value_format_name: usd
   }
 
   measure: total_lifetime_orders {

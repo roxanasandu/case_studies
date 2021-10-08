@@ -70,6 +70,7 @@ view: order_items {
   dimension: sale_price {
     type: number
     sql: ${TABLE}."SALE_PRICE" ;;
+    value_format_name: usd
   }
 
   dimension_group: shipped {
@@ -140,8 +141,8 @@ view: order_items {
     value_format_name: percent_0
   }
 
-  measure: total_sale_price {
-    type: sum
+  dimension: total_sale_price {
+    type: number
     sql: ${sale_price} ;;
     value_format_name: usd
   }

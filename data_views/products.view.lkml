@@ -25,6 +25,7 @@ view: products {
   }
 
   dimension: department {
+    label: "Department Rox"
     type: string
     sql: ${TABLE}."CATEGORY" ;;
   }
