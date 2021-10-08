@@ -15,8 +15,6 @@ view: products {
   }
 
   dimension: category {
-    label: "trst "
-    group_label: "test"
     type: string
     sql: ${TABLE}."CATEGORY" ;;
   }
@@ -47,6 +45,7 @@ view: products {
 
   dimension: retail_price {
     type: number
+    label: "tarms test"
     sql: ${TABLE}."RETAIL_PRICE" ;;
   }
 
