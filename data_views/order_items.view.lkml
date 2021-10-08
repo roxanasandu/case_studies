@@ -10,7 +10,7 @@ view: order_items {
   }
 
   dimension: order_created {
-    label: "TC Order Date Created"
+    label: "Created time"
     type: date_time
     sql: ${TABLE}."CREATED_AT" ;;
   }
