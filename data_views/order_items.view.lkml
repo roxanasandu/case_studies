@@ -10,6 +10,7 @@ view: order_items {
   }
 
   dimension: order_created {
+    label: "Created time"
     type: date_time
     sql: ${TABLE}."CREATED_AT" ;;
   }
