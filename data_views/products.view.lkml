@@ -44,7 +44,7 @@ view: products {
   }
 
   dimension: retail_price {
-    label: "tarms redo"
+    label: "Merge Conflicts Are Awesome"
     type: number
     sql: ${TABLE}."RETAIL_PRICE" ;;
   }
