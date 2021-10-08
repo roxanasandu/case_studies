@@ -15,6 +15,8 @@ view: products {
   }
 
   dimension: category {
+    label: "trst "
+    group_label: "test"
     type: string
     sql: ${TABLE}."CATEGORY" ;;
   }
