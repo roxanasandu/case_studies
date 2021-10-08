@@ -25,7 +25,7 @@ view: products {
   }
 
   dimension: department {
-    label: "Department Rox"
+    label: "Department"
     type: string
     sql: ${TABLE}."COST" ;;
   }
