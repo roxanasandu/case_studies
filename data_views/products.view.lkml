@@ -25,7 +25,7 @@ view: products {
   }
 
   dimension: department {
-    label: "I don't believe in labels"
+    label: "Department Rox"
     type: string
     sql: ${TABLE}."DEPARTMENT" ;;
   }
