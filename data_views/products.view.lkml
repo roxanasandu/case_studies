@@ -20,6 +20,7 @@ view: products {
   }
 
   dimension: cost {
+    label: "This is the cost"
     type: number
     sql: ${TABLE}."COST" ;;
   }
