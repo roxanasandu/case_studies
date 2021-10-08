@@ -44,8 +44,8 @@ view: products {
   }
 
   dimension: retail_price {
+    label: "tarms redo"
     type: number
-    label: "tarms test"
     sql: ${TABLE}."RETAIL_PRICE" ;;
   }
 
