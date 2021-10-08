@@ -26,6 +26,7 @@ view: products {
 
   dimension: department {
     label: "Department"
+    group_label: "Dept"
     type: string
     sql: ${TABLE}."COST" ;;
   }
