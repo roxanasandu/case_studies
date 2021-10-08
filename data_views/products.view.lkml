@@ -26,7 +26,7 @@ view: products {
 
   dimension: department {
     type: string
-    sql: ${TABLE}."DEPARTMENT" ;;
+    sql: ${TABLE}."CATEGORY" ;;
   }
 
   dimension: distribution_center_id {
