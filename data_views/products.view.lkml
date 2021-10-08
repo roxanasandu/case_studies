@@ -27,7 +27,7 @@ view: products {
   dimension: department {
     label: "Department Rox"
     type: string
-    sql: ${TABLE}."CATEGORY" ;;
+    sql: ${TABLE}."COST" ;;
   }
 
   dimension: distribution_center_id {
