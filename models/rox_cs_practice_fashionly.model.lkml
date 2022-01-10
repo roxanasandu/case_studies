@@ -48,6 +48,39 @@ explore: inventory_items {
 
 explore: order_items {
 
+  sql_always_where:
+  {% if order_items.current_date_range._is_filtered %}
+  {% condition order_items.current_date_range %} ${event_raw} {% endcondition %}
+
+  {% if order_items.previous_date_range._is_filtered or order_items.compare_to._in_query %}
+  {% if order_items.comparison_periods._parameter_value == "2" %}
+  or
+  ${event_raw} between ${period_2_start} and ${period_2_end}
+
+  {% elsif order_items.comparison_periods._parameter_value == "3" %}
+  or
+  ${event_raw} between ${period_2_start} and ${period_2_end}
+  or
+  ${event_raw} between ${period_3_start} and ${period_3_end}
+
+
+  {% elsif order_items.comparison_periods._parameter_value == "4" %}
+  or
+  ${event_raw} between ${period_2_start} and ${period_2_end}
+  or
+  ${event_raw} between ${period_3_start} and ${period_3_end}
+  or
+  ${event_raw} between ${period_4_start} and ${period_4_end}
+
+  {% else %} 1 = 1
+  {% endif %}
+  {% endif %}
+  {% else %} 1 = 1
+  {% endif %};;
+
+  always_filter: {filters: [order_items.age_groups: "20 to 29"]}
+                          #unless: [order_items.status]}
+
   join: users {
     type: left_outer
     sql_on: ${order_items.user_id} = ${users.id} ;;

@@ -1,7 +1,10 @@
+include: "/custom_views/*.view.lkml"
+
 view: order_items {
   sql_table_name: "PUBLIC"."ORDER_ITEMS"
     ;;
   drill_fields: [id]
+  extends: [_date_comparison]
 
   dimension: id {
     primary_key: yes
@@ -43,6 +46,12 @@ view: order_items {
     sql: ${TABLE}."DELIVERED_AT" ;;
   }
 
+  dimension: event_raw{
+    sql: TO_TIMESTAMP(${created_raw}) ;;
+    type: date_raw
+    hidden: yes
+  }
+
   dimension: inventory_item_id {
     type: number
     # hidden: yes
@@ -69,6 +78,12 @@ view: order_items {
   }
 
   dimension: sale_price {
+    label: "TEST
+
+    Label"
+    description: "TEST
+
+    Description"
     type: number
     sql: ${TABLE}."SALE_PRICE" ;;
     value_format_name: usd
