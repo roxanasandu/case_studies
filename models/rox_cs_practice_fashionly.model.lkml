@@ -1,4 +1,4 @@
-connection: "snowlooker"
+connection: "thelook_ecommerce_cts_bq_instance"
 
 # include all the views
 include: "/data_views/**/*.view"
@@ -78,8 +78,8 @@ explore: order_items {
   {% else %} 1 = 1
   {% endif %};;
 
-  always_filter: {filters: [order_items.age_groups: "20 to 29"]}
-                          #unless: [order_items.status]}
+  # conditionally_filter: {filters: [order_items.age_groups: "20 to 29"]
+  #                         unless: [order_items.status]}
 
   join: users {
     type: left_outer

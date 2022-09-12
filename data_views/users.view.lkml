@@ -94,6 +94,7 @@ view: users {
   measure: count {
     type: count
     drill_fields: [id, first_name, last_name, events.count, order_items.count]
+    link: {label: "test link" url: "https://ctspartner.de.looker.com/dashboards/73?Completed+Week=30+day" }
   }
 
   # measure: first_order_date {
